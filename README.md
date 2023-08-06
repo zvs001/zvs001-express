@@ -1,9 +1,8 @@
 
-Decryption middleware for express. 
+Express with minimal shared setup. Also includes some shared middlewares
 
 [![npm](https://img.shields.io/npm/v/@zvs001/express)](https://www.npmjs.com/package/@zvs001/express)
 
-At the moment library decrypts only body from requests.
 
 ## Install
 
