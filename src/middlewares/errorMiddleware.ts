@@ -6,8 +6,5 @@ export const errorMiddleware = (err, req, res, next) => {
   }
 }
 
-const postMiddlewares = [
-  errorMiddleware,
-]
 
-export default postMiddlewares
+export default errorMiddleware

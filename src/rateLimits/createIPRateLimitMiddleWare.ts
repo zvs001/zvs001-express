@@ -1,12 +1,12 @@
 import RateLimit from 'express-rate-limit'
 import RedisStore from 'rate-limit-redis'
-import { RedisClientType } from "redis"
+import { createClient } from "redis"
 
 const timeWindowDefaultSeconds = 60 * 60 // hour
 
 function createIPRateLimitMiddleWare(params: {
   serviceName: string
-  redisClient: RedisClientType
+  redisClient: ReturnType<typeof createClient>
   timeWindowMs?: number
   rateLimitMax?: number
 }) {
