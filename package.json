@@ -1,6 +1,6 @@
 {
   "name": "@zvs001/express",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "./src/index",
   "scripts": {
     "prepack": "npx tsc --noEmit false",
@@ -8,12 +8,11 @@
     "clean": "npx module-kit-clean"
   },
   "keywords": [
-    "licence",
     "express"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/OctoGuild/octoguild-licence-express"
+    "url": "https://github.com/zvs001/zvs001-express"
   },
   "dependencies": {
     "axios": "^1.4.0",
