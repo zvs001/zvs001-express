@@ -10,6 +10,4 @@ export function checkValidator(req, res, next) {
   })
 }
 
-export default {
-  checkValidator,
-}
+export default checkValidator
