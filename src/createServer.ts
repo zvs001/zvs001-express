@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import addRequestId from 'express-request-id'
+import robots from 'express-robots-txt'
 
 function createServer() {
   const app = express()
@@ -9,6 +10,11 @@ function createServer() {
 
   app.use(cors('*'))
   app.use(addRequestId())
+
+  app.use(robots({
+    UserAgent: '*',
+    Disallow: '/'
+  }))
 
   return app
 }
