@@ -3,6 +3,9 @@ import createJoiValidator from './createJoiValidator'
 import checkValidator from './checkValidator'
 import apiCallMiddleware from './apiCallMiddleware'
 import errorMiddleware from "./errorMiddleware"
+import createRequestLogger from "./logger/createRequestLogger"
+
+export * from './logger'
 
 export function applyNotFoundMiddleWare(app: Router) {
   app.all('*', (req, res) => {
@@ -30,4 +33,5 @@ export default {
   checkValidator,
   apiCallMiddleware,
   errorMiddleware,
+  createRequestLogger,
 }
