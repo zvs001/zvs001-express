@@ -10,6 +10,7 @@ Express with minimal shared setup. Also includes some shared middlewares
 
 ## Usage
 
+Configure server
 ```typescript
 import { createServer, createIPRateLimitMiddleWare, createRequestLogger } from '@zvs001/express'
 import bodyParser from 'body-parser'
@@ -35,4 +36,18 @@ function createAppServer() {
 }
 
 export default createAppServer
+```
 
+
+Apply server
+```typescript
+import { applyPostMiddleWares } from '@zvs001/express/src/middlewares'
+import adminRouter from './api/admin/router'
+import createServer from './lib/express/createServer'
+
+const server = createServer()
+
+server.use('/admin', adminRouter)
+
+applyPostMiddleWares(server)
+```

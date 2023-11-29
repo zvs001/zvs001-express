@@ -1,1 +1,3 @@
-export * from './createRequestLogger'
+import createRequestLogger from './createRequestLogger'
+
+export { createRequestLogger }
