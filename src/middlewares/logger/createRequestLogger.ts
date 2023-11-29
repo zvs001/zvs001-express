@@ -7,10 +7,11 @@ import {Request, Response} from "express"
 const createRequestLogger = (options?: {
   getAppInfo?: (req: Request, res: Response) => string
   getUserInfo?: (req: Request, res: Response) => string
+  getDeviceInfo?: (req: Request, res: Response) => string
   shouldIgnore?: (req: Request, res: Response, url: string) => boolean
   prepareMessage?: (req: Request, res: Response, messageArr: string[]) => string[]
 }) => {
-  const { getAppInfo, getUserInfo, shouldIgnore, prepareMessage } = options || {}
+  const { getAppInfo, getUserInfo, getDeviceInfo, shouldIgnore, prepareMessage } = options || {}
 
   return morgan((tokens, req, res) => {
     const { id } = req
@@ -56,6 +57,7 @@ const createRequestLogger = (options?: {
 
     let userInfo = getUserInfo ? getUserInfo(req, res) : ''
     let appInfo = getAppInfo ? getAppInfo(req, res) : ''
+    let deviceInfo = getDeviceInfo ? getDeviceInfo(req, res) : ''
 
     // const app = [req.headers['app-version']]
     // let _app = _.compact(app).join(':')
@@ -66,6 +68,7 @@ const createRequestLogger = (options?: {
       id,
       method.length === 3 ? `${method} ` : method,
       url,
+      colors.cyan(deviceInfo),
       colors.cyan(appInfo),
       colors.cyan(userInfo),
       body,
