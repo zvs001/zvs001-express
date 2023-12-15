@@ -2,7 +2,7 @@ import colors from 'colors'
 import express from 'express'
 import _ from 'lodash'
 import logger from '../lib/logger'
-import LogicError from "../../../../libs/LogicError"
+import LogicError from '../lib/LogicError'
 
 const isTest = process.env.NODE_ENV === 'test'
 
