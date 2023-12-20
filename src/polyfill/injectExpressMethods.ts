@@ -14,7 +14,9 @@ express.request.log = function (...args) {
 
 // @ts-ignore
 express.request.logError = function (...args) {
+  // this method is designed to be used as custom error handler, like validation ,etc.
   if (isTest) return null
+
   // @ts-ignore
   logger.error(colors.cyan('[LOG]'), this.id, ...args)
 }
