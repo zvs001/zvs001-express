@@ -3,20 +3,24 @@ import _ from 'lodash'
 import morgan from 'morgan'
 import logger from '../../lib/logger'
 import {Request, Response} from "express"
+import {getClientIP} from "../../lib/expressUtils";
 
 const createRequestLogger = (options?: {
+  showIp?: boolean
   getAppInfo?: (req: Request, res: Response) => string
   getUserInfo?: (req: Request, res: Response) => string
   getDeviceInfo?: (req: Request, res: Response) => string
   shouldIgnore?: (req: Request, res: Response, url: string) => boolean
   prepareMessage?: (req: Request, res: Response, messageArr: string[]) => string[]
 }) => {
-  const { getAppInfo, getUserInfo, getDeviceInfo, shouldIgnore, prepareMessage } = options || {}
+  const { getAppInfo, getUserInfo, getDeviceInfo, shouldIgnore, prepareMessage, showIp = true } = options || {}
 
   return morgan((tokens, req, res) => {
     const { id } = req
     const method = tokens.method(req, res)
     const url = tokens.url(req, res)
+
+    const ip = getClientIP(req)
 
     if (shouldIgnore?.(req, res, url)) return null
 
@@ -68,6 +72,7 @@ const createRequestLogger = (options?: {
       id,
       method.length === 3 ? `${method} ` : method,
       url,
+      showIp ? colors.cyan(ip || '') : null,
       colors.cyan(deviceInfo),
       colors.cyan(appInfo),
       colors.cyan(userInfo),
@@ -77,6 +82,7 @@ const createRequestLogger = (options?: {
       `${tokens['response-time'](req, res)}ms`,
     ]
 
+    message = _.compact(message)
     if(prepareMessage) message = prepareMessage(req, res, message)
 
     const messageStr = _.compact(message).join(' ')
