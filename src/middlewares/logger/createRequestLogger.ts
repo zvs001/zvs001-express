@@ -13,7 +13,7 @@ const createRequestLogger = (options?: {
   shouldIgnore?: (req: Request, res: Response, url: string) => boolean
   prepareMessage?: (req: Request, res: Response, messageArr: string[]) => string[]
 }) => {
-  const { getAppInfo, getUserInfo, getDeviceInfo, shouldIgnore, prepareMessage, showIp = true } = options || {}
+  const { getAppInfo, getUserInfo, getDeviceInfo, shouldIgnore, prepareMessage, showIp = false } = options || {}
 
   return morgan((tokens, req, res) => {
     const { id } = req
