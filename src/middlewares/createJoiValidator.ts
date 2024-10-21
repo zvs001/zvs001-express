@@ -3,6 +3,7 @@ import createHttpError from 'http-errors'
 import Joi from 'joi'
 
 export default function createJoiValidator<T = any>(schema: Joi.ObjectSchema<T>): RequestHandler {
+  // @ts-ignore
   return async function validateMiddleware(req, res, next) {
     try {
       const validated = await schema.validateAsync(req.body, { allowUnknown: true, stripUnknown: false })
