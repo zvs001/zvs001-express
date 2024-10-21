@@ -1,5 +1,6 @@
 {
     "reject": [
-        "express-request-id"
+       "axios" , // prefer version from project
+        "express-request-id" // new version is crashing
     ]
 }

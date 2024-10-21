@@ -8,7 +8,7 @@ import createRequestLogger from "./logger/createRequestLogger"
 export * from './logger'
 
 export function applyNotFoundMiddleWare(app: Router) {
-  app.all('*', (req, res) => {
+  app.use((req, res) => {
     res.status(404).json({ error: 'Method is not provided' })
   })
 }
